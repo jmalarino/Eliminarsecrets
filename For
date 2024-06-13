@@ -1,0 +1,3 @@
+for secret in $(oc get secrets -n cluster-ops -o json | jq -r '.items[] | select(.metadata.name | startswith("ldap-group-syncer-dockercfg-")) | .metadata.name'); do
+  oc delete secret $secret -n cluster-ops
+done
